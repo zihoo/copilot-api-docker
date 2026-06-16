@@ -60,8 +60,6 @@ docker-compose up -d
 
 ## 可用模型
 
-可在 `ANTHROPIC_MODEL` 与 `ANTHROPIC_SMALL_FAST_MODEL` 中按需填写以下模型：
-
 ### Anthropic Claude
 
 - Claude Opus 4.8
