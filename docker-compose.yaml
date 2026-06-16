@@ -1,0 +1,10 @@
+services:
+  copilot-api:
+    build: .
+    container_name: copilot-api
+    restart: unless-stopped
+    ports:
+      - "4141:4141"
+    volumes:
+      # 映射本机用户目录到容器root用户对应目录
+      - ~/.local/share/copilot-api:/root/.local/share/copilot-api
