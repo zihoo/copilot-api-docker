@@ -77,3 +77,7 @@ docker-compose up -d
 
 - Gemini 3.5 Flash
 - Gemini 2.5 Pro
+
+## 致谢
+
+本项目基于 [ericc-ch/copilot-api](https://github.com/ericc-ch/copilot-api) 提供的 copilot-api 服务，仅在其之上封装了 Docker 部署方案。
