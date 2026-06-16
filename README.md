@@ -24,13 +24,6 @@ docker-compose up -d
 
 容器会以 `copilot-api` 为名启动，监听宿主机的 `4141` 端口（`http://localhost:4141`），并随 Docker 自动重启。
 
-常用命令：
-
-```bash
-docker-compose logs -f      # 查看日志
-docker-compose down         # 停止并移除容器
-docker-compose up -d --build # 修改 Dockerfile 后重新构建并启动
-```
 
 ### 3. 配置 Claude Code
 
@@ -58,3 +51,29 @@ docker-compose up -d --build # 修改 Dockerfile 后重新构建并启动
 - `API_TIMEOUT_MS`：放宽请求超时时间，避免长任务被中断。
 
 配置完成后重新启动 Claude Code，即可通过本地 copilot-api 服务使用。
+
+## 可用模型
+
+可在 `ANTHROPIC_MODEL` 与 `ANTHROPIC_SMALL_FAST_MODEL` 中按需填写以下模型：
+
+### Anthropic Claude
+
+- Claude Opus 4.8
+- Claude Opus 4.7
+- Claude Opus 4.6
+- Claude Opus 4.5
+- Claude Sonnet 4.6
+- Claude Sonnet 4.5
+- Claude Haiku 4.5
+
+### OpenAI GPT
+
+- GPT-5.5
+- GPT-5.4
+- GPT-5.4 mini
+- GPT-5 mini
+
+### Google Gemini
+
+- Gemini 3.5 Flash
+- Gemini 2.5 Pro
