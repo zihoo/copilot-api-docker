@@ -32,10 +32,14 @@ docker-compose up -d
 ```json
 {
   "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80",
     "ANTHROPIC_BASE_URL": "http://localhost:4141",
     "ANTHROPIC_AUTH_TOKEN": "dummy",
-    "ANTHROPIC_MODEL": "claude-opus-4.8",
-    "ANTHROPIC_SMALL_FAST_MODEL": "claude-sonnet-4.6",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4.5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4.6",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4.8",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-opus-4.8",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "API_TIMEOUT_MS": "3000000"
@@ -45,9 +49,11 @@ docker-compose up -d
 
 说明：
 
+- `CLAUDE_CODE_SUBAGENT_MODEL`：指定子代理（subagent）使用的模型，这里用轻量的 `haiku`。
+- `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`：上下文占用达到该百分比时触发自动压缩。
 - `ANTHROPIC_BASE_URL`：指向容器暴露的本地服务地址。
 - `ANTHROPIC_AUTH_TOKEN`：本地服务不校验 token，填任意值（如 `dummy`）即可。
-- `ANTHROPIC_MODEL` / `ANTHROPIC_SMALL_FAST_MODEL`：分别指定主模型与轻量快速模型，可按需调整。
+- `ANTHROPIC_DEFAULT_HAIKU_MODEL` / `ANTHROPIC_DEFAULT_SONNET_MODEL` / `ANTHROPIC_DEFAULT_OPUS_MODEL` / `ANTHROPIC_DEFAULT_FABLE_MODEL`：分别为 Haiku、Sonnet、Opus、Fable 各档位映射实际使用的模型，可按需调整。
 - `API_TIMEOUT_MS`：放宽请求超时时间，避免长任务被中断。
 
 配置完成后重新启动 Claude Code，即可通过本地 copilot-api 服务使用。
