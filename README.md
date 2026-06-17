@@ -84,20 +84,15 @@ docker-compose up -d
 
 ## 本地 copilot-api 命令
 
-除容器方式外，也可在宿主机直接使用 `copilot-api` 的命令行工具：
+在宿主机直接使用 `copilot-api` 的命令行工具：
 
 ```bash
-# 启动 API 服务（如未认证会自动触发认证流程）
 npx copilot-api@latest start
 
-# 仅运行 GitHub 认证流程而不启动服务
-# 常用于非交互环境，或为 --github-token 选项生成 token
 npx copilot-api@latest auth
 
-# 在终端查看当前 GitHub Copilot 用量与配额（无需启动服务）
 npx copilot-api@latest check-usage
 
-# 显示诊断信息（版本、运行时、文件路径、认证状态等），便于排查问题
 npx copilot-api@latest debug
 ```
 
