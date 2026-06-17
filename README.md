@@ -82,6 +82,34 @@ docker-compose up -d
 - Gemini 3.5 Flash
 - Gemini 2.5 Pro
 
+## 本地 copilot-api 命令
+
+除容器方式外，也可在宿主机直接使用 `copilot-api` 的命令行工具：
+
+```bash
+# 启动 API 服务（如未认证会自动触发认证流程）
+npx copilot-api@latest start
+
+# 仅运行 GitHub 认证流程而不启动服务
+# 常用于非交互环境，或为 --github-token 选项生成 token
+npx copilot-api@latest auth
+
+# 在终端查看当前 GitHub Copilot 用量与配额（无需启动服务）
+npx copilot-api@latest check-usage
+
+# 显示诊断信息（版本、运行时、文件路径、认证状态等），便于排查问题
+npx copilot-api@latest debug
+```
+
+各命令说明：
+
+- `start`：启动 Copilot API 服务，必要时会自动处理认证。
+- `auth`：只跑 GitHub 认证流程而不启动服务，适用于非交互环境或需要为 `--github-token` 生成 token 的场景。
+- `check-usage`：直接在终端展示当前的 GitHub Copilot 用量与配额信息，无需启动服务。
+- `debug`：显示版本、运行时细节、文件路径与认证状态等诊断信息，便于排查与求助。
+
+> 当怀疑 token 失效时，可执行 `npx copilot-api@latest check-usage`：若命令正常返回用量信息，则说明 token 仍然可用。
+
 ## 致谢
 
 本项目基于 [ericc-ch/copilot-api](https://github.com/ericc-ch/copilot-api) 提供的 copilot-api 服务，仅在其之上封装了 Docker 部署方案。
