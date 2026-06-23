@@ -26,9 +26,7 @@ docker-compose up -d
 
 服务启动后，会生成 Copilot 使用量看板 URL，例如：
 
-```text
-http://localhost:4141/usage-viewer?endpoint=http://localhost:4141/usage
-```
+[http://localhost:4141/usage-viewer?endpoint=http://localhost:4141/usage](http://localhost:4141/usage-viewer?endpoint=http://localhost:4141/usage)
 
 这个看板是用于监控 API 用量的 Web 界面。如果怀疑 token 过期，可通过 `curl http://localhost:4141/usage` 或打开 Web 看板来确认。
 
