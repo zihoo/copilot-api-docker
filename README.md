@@ -1,6 +1,6 @@
 # copilot-api-docker
 
-使用 Docker 运行 [copilot-api](https://www.npmjs.com/package/copilot-api)，将 GitHub Copilot 封装为兼容 Anthropic 接口的本地服务，供 Claude Code 等工具调用。
+使用 Docker 运行 [@jeffreycao/copilot-api@latest](https://www.npmjs.com/package/@jeffreycao/copilot-api)，将 GitHub Copilot 封装为兼容 Anthropic 接口的本地服务，供 Claude Code 等工具调用。
 
 服务基于 Node 22 Alpine 镜像构建，监听 `4141` 端口，并将认证数据持久化到宿主机 `~/.local/share/copilot-api`。
 
@@ -11,7 +11,7 @@
 在宿主机执行以下命令，按提示登录 GitHub Copilot：
 
 ```bash
-npx copilot-api@latest auth
+npx @jeffreycao/copilot-api@latest auth
 ```
 
 该步骤会在 `~/.local/share/copilot-api` 目录下生成认证文件。该目录会被映射进容器，因此容器无需重复认证。
@@ -24,6 +24,21 @@ docker-compose up -d
 
 容器会以 `copilot-api` 为名启动，监听宿主机的 `4141` 端口（`http://localhost:4141`），并随 Docker 自动重启。
 
+服务启动后，会生成 Copilot 使用量看板 URL，例如：
+
+```text
+http://localhost:4141/usage-viewer?endpoint=http://localhost:4141/usage
+```
+
+这个看板是用于监控 API 用量的 Web 界面。如果怀疑 token 过期，可通过 `curl http://localhost:4141/usage` 或打开 Web 看板来确认。
+
+使用量看板说明：
+
+- **API Endpoint URL**：看板会通过 URL 查询参数，默认从本地服务端点拉取数据。你也可以把这个 URL 改成任意其他兼容 API 端点。
+- **Fetch Data**：点击 “Fetch” 按钮即可加载或刷新使用数据。页面首次加载时也会自动拉取。
+- **Usage Quotas**：使用进度条汇总展示 Chat、Completions 等不同服务的额度使用情况。
+- **Detailed Information**：可查看 API 返回的完整 JSON，以便深入分析所有可用统计信息。
+- **URL-based Configuration**：你也可以直接通过 URL 查询参数指定 API 端点，便于收藏或分享。例如：`http://localhost:4141/usage-viewer?endpoint=http://your-api-server/usage`。
 
 ### 3. 配置 Claude Code
 
@@ -87,24 +102,19 @@ docker-compose up -d
 在宿主机直接使用 `copilot-api` 的命令行工具：
 
 ```bash
-npx copilot-api@latest start
+npx @jeffreycao/copilot-api@latest start
 
-npx copilot-api@latest auth
+npx @jeffreycao/copilot-api@latest auth
 
-npx copilot-api@latest check-usage
-
-npx copilot-api@latest debug
+npx @jeffreycao/copilot-api@latest debug
 ```
 
 各命令说明：
 
 - `start`：启动 Copilot API 服务，必要时会自动处理认证。
 - `auth`：只跑 GitHub 认证流程而不启动服务，适用于非交互环境或需要为 `--github-token` 生成 token 的场景。
-- `check-usage`：直接在终端展示当前的 GitHub Copilot 用量与配额信息，无需启动服务。
 - `debug`：显示版本、运行时细节、文件路径与认证状态等诊断信息，便于排查与求助。
-
-> 当怀疑 token 失效时，可执行 `npx copilot-api@latest check-usage`：若命令正常返回用量信息，则说明 token 仍然可用。
 
 ## 致谢
 
-本项目基于 [ericc-ch/copilot-api](https://github.com/ericc-ch/copilot-api) 提供的 copilot-api 服务，仅在其之上封装了 Docker 部署方案。
+本项目基于 [caozhiyuan/copilot-api](https://github.com/caozhiyuan/copilot-api) 提供的 copilot-api 服务，仅在其之上封装了 Docker 部署方案。
