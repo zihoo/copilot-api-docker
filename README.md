@@ -11,7 +11,7 @@
 在宿主机执行以下命令，按提示登录 GitHub Copilot：
 
 ```bash
-npx @jeffreycao/copilot-api@latest auth
+npx copilot-api@latest auth
 ```
 
 该步骤会在 `~/.local/share/copilot-api` 目录下生成认证文件。该目录会被映射进容器，因此容器无需重复认证。
