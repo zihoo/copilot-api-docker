@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apk add --no-cache git openssh
 
 # 全局提前安装copilot-api最新版（可选，加速启动，npx仍会校验最新）
-RUN npm install -g copilot-api@latest
+RUN npm install -g @jeffreycao/copilot-api@latest
 
 # 暴露服务端口4141
 EXPOSE 4141
@@ -17,4 +17,4 @@ EXPOSE 4141
 VOLUME ["/root/.local/share/copilot-api"]
 
 # 容器启动命令：启动copilot-api服务
-CMD ["npx", "copilot-api@latest", "start"]
+CMD ["npx", "@jeffreycao/copilot-api@latest", "start"]

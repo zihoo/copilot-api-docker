@@ -11,7 +11,7 @@
 在宿主机执行以下命令，按提示登录 GitHub Copilot：
 
 ```bash
-npx copilot-api@latest auth
+npx @jeffreycao/copilot-api@latest auth
 ```
 
 该步骤会在 `~/.local/share/copilot-api` 目录下生成认证文件。该目录会被映射进容器，因此容器无需重复认证。
@@ -87,13 +87,13 @@ docker-compose up -d
 在宿主机直接使用 `copilot-api` 的命令行工具：
 
 ```bash
-npx copilot-api@latest start
+npx @jeffreycao/copilot-api@latest start
 
-npx copilot-api@latest auth
+npx @jeffreycao/copilot-api@latest auth
 
-npx copilot-api@latest check-usage
+npx @jeffreycao/copilot-api@latest check-usage
 
-npx copilot-api@latest debug
+npx @jeffreycao/copilot-api@latest debug
 ```
 
 各命令说明：
@@ -103,7 +103,7 @@ npx copilot-api@latest debug
 - `check-usage`：直接在终端展示当前的 GitHub Copilot 用量与配额信息，无需启动服务。
 - `debug`：显示版本、运行时细节、文件路径与认证状态等诊断信息，便于排查与求助。
 
-> 当怀疑 token 失效时，可执行 `npx copilot-api@latest check-usage`：若命令正常返回用量信息，则说明 token 仍然可用。
+> 当怀疑 token 失效时，可执行 `npx @jeffreycao/copilot-api@latest check-usage`：若命令正常返回用量信息，则说明 token 仍然可用。
 
 ## 致谢
 
